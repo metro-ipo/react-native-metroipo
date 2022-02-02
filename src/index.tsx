@@ -1,9 +1,125 @@
-import { NativeModules } from 'react-native';
+import { NativeModules, EventEmitter, NativeEventEmitter } from 'react-native';
 
-type MetroipoType = {
-  multiply(a: number, b: number): Promise<number>;
-};
+interface Result {
+  success: boolean;
+  error: boolean;
+  message: string;
+}
 
-const { Metroipo } = NativeModules;
+interface MetroIpoConfig {
+  domain?: String;
+  code?: String;
+  theme?: Theme;
+}
 
-export default Metroipo as MetroipoType;
+interface Theme {
+  /**
+   * Defines the background color of the Toolbar.
+   */
+  colorPrimary?: string;
+  /**
+   * Defines the color of the Back button and the text color of the Title in the Toolbar.
+  */
+  colorSecondary?: string;
+  /**
+   * Defines the background color of Primary Buttons and the text color of Secondary Buttons.
+   */
+  colorButtonPrimary?: string;
+  /**
+   * Defines the text color of primary buttons
+   */
+  colorButtonPrimaryText?: string;
+  /**
+   * Defines the background color of primary buttons when pressed
+   */
+  colorButtonPrimaryPressed?: string;
+}
+
+class MetroIpoModule {
+  private readonly module: any;
+  private readonly emitter: EventEmitter;
+
+  constructor() {
+    this.module = NativeModules.MetroIpo;
+    this.emitter = new NativeEventEmitter(this.module);
+  }
+
+  /**
+  * Function 'init' takes the following parameters:
+  * 1. MetroIpoConfig config: Metro IPO Sdk configuration.
+  * 
+  * Returns a Promise
+  */
+  public init(config: MetroIpoConfig = { domain: '', code: '', theme: {} }): Promise<Result> {
+    return this.module.initialize(config.domain, config.code, config.theme);
+  }
+
+  public startCapture(): Promise<Result> {
+    return this.module.start();
+  }
+
+  public onComplete(callback: (...args: any[]) => any) {
+    this.emitter.addListener('onMetroIpoComplete', callback);
+  }
+
+  public onCancel(callback: (...args: any[]) => any) {
+    this.emitter.addListener('onMetroIpoCancel', callback);
+  } 
+
+  /**
+  * Function 'removeListeners' unregisters the 'onMetroIpoComplete' and 'onMetroIpoCancel' event listeners if they were defined.
+  */
+  public removeListeners() {
+    this.emitter.removeListener('onMetroIpoComplete', () => { });
+    this.emitter.removeListener('onMetroIpoCancel', () => { });
+  }
+
+}
+
+class ConfigBuilder {
+  private domain: String = '';
+  private code: String = '';
+  private appearance: Theme = {};
+
+  /**
+  * Function 'setDomain' takes the following parameter:
+  * String: Metro Ipo Admin Server base url.
+  */
+  public setDomain(domain: String) {
+    let val = domain.trim();
+    if (val == '') {
+      throw new Error("Admin server base url is missing.");
+    }
+    this.domain = val;
+    return this;
+  }
+
+  /**
+  * Function 'setCode' takes the following parameter:
+  * String: Metro Ipo Application Verification Code.
+  */
+  public setCode(code: String) {
+    let val = code.trim();
+    if (val == '') {
+      throw new Error("Verification code is missing.");
+    }
+    this.code = val;
+    return this;
+  }
+
+  /**
+  * iOS only - for android, set appearance in colors.xml file
+  */
+  public setAppearance(theme: Theme): ConfigBuilder {
+    this.appearance = theme;
+    return this;
+  }
+
+  public build(): MetroIpoConfig {
+    return { domain: this.domain, code: this.code, theme: this.appearance }
+  }
+}
+
+export const MetroIpo = new MetroIpoModule();
+
+export const MetroIpoConfig = new ConfigBuilder();

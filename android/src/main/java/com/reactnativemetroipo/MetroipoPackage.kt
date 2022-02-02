@@ -6,7 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
 
 
-class MetroipoPackage : ReactPackage {
+class MetroIpoPackage : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
         return listOf(MetroipoModule(reactContext))
     }

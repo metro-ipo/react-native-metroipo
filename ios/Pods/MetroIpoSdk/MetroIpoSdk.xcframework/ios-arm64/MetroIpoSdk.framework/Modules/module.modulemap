@@ -1,0 +1,11 @@
+framework module MetroIpoSdk {
+  umbrella header "MetroIpoSdk.h"
+
+  export *
+  module * { export * }
+}
+
+module MetroIpoSdk.Swift {
+    header "MetroIpoSdk-Swift.h"
+    requires objc
+}
