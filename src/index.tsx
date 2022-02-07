@@ -55,7 +55,7 @@ class MetroIpoModule {
   }
 
   public startCapture(): Promise<Result> {
-    return this.module.start();
+    return this.module.startCapture();
   }
 
   public onComplete(callback: (...args: any[]) => any) {
