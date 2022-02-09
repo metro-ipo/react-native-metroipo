@@ -6,6 +6,7 @@ import { MetroIpo, MetroIpoConfig } from 'react-native-metroipo';
 export default function App() {
   const [result, setResult] = React.useState("Awaiting Initialization");
   const [codeInput, setCodeInput] = React.useState("");
+
   React.useEffect(() => {
     MetroIpo.onComplete((event: any) => {
       setResult(event.message);
@@ -32,36 +33,38 @@ export default function App() {
         setResult(res.message);
       }
     } catch (error) {
-      setResult("Error: " + error);
+      setResult(String(error));
     }
   }
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
-      <TextInput
-        maxLength={4}
-        autoFocus={true}
-        textContentType={'oneTimeCode'}
-        keyboardType={'number-pad'}
-        value={codeInput}
-        autoCapitalize={'none'}
-        disableFullscreenUI={true}
-        placeholderTextColor="#98A9BC"
-        selectionColor="#4D7CFE"
-        style={[styles.textField]}
-        placeholder="Code"
-        onChangeText={(text) => setCodeInput(text.trim())}
-      />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          startSdk(codeInput)
-        }}>
-        <View>
-          <Text style={styles.buttonText}>Start Signature Capture</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.pageWrap}>
+        <Text>Result: {result}</Text>
+        <TextInput
+          value={codeInput}
+          onChangeText={(text) => setCodeInput(text.trim())}
+          style={[styles.textField]}
+          placeholder="Code"
+          placeholderTextColor="#98A9BC"
+          maxLength={4}
+          autoFocus={true}
+          textContentType={'oneTimeCode'}
+          keyboardType={'number-pad'}
+          autoCapitalize={'none'}
+          disableFullscreenUI={true}
+          selectionColor="#4D7CFE"
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            startSdk(codeInput)
+          }}>
+          <View>
+            <Text style={styles.buttonText}>Start Signature Capture</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -72,15 +75,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  pageWrap: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    width: '100%',
+  },
   button: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: '#000000',
+    backgroundColor: '#4C35E6',
+    borderRadius: 3,
   },
   buttonText: {
-    fontSize: 14,
+    fontSize: 20,
     textAlign: 'center',
     color: '#FFFFFF',
+    fontWeight: 'bold'
   },
   textField: {
     textAlign: 'center',
@@ -88,13 +98,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     height: 'auto',
     width: '100%',
-    color: '#5E6671',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: '#707070',
+    borderWidth: 1,
+    borderRadius: 3,
+    borderColor: '#CCCCCC',
     backgroundColor: 'transparent',
     marginTop: 5,
   }

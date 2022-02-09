@@ -38,6 +38,8 @@ interface Theme {
 class MetroIpoModule {
   private readonly module: any;
   private readonly emitter: EventEmitter;
+  private onCompleteListener: any;
+  private onCancelListener: any;
 
   constructor() {
     this.module = NativeModules.MetroIpo;
@@ -59,21 +61,24 @@ class MetroIpoModule {
   }
 
   public onComplete(callback: (...args: any[]) => any) {
-    this.emitter.addListener('onMetroIpoComplete', callback);
+    this.onCompleteListener = this.emitter.addListener('onMetroIpoComplete', callback);
   }
 
   public onCancel(callback: (...args: any[]) => any) {
-    this.emitter.addListener('onMetroIpoCancel', callback);
-  } 
+    this.onCancelListener = this.emitter.addListener('onMetroIpoCancel', callback);
+  }
 
   /**
   * Function 'removeListeners' unregisters the 'onMetroIpoComplete' and 'onMetroIpoCancel' event listeners if they were defined.
   */
   public removeListeners() {
-    this.emitter.removeListener('onMetroIpoComplete', () => { });
-    this.emitter.removeListener('onMetroIpoCancel', () => { });
+    if (this.onCompleteListener != null) {
+      this.onCompleteListener.remove('onMetroIpoComplete', () => { });
+    }
+    if (this.onCancelListener != null) {
+      this.onCancelListener.remove('onMetroIpoCancel', () => { });
+    }
   }
-
 }
 
 class ConfigBuilder {
