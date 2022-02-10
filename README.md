@@ -50,10 +50,10 @@ try {
 // Customizing the Theme - iOS only. The Android theme can be updated in your app's colors.xml file. See here for further details: https://github.com/metro-ipo/metroipo-android-sdk#6-customizing-the-theme
 const config = MetroIpoConfig.setDomain("METRO_URL").setCode("CODE")
 .setAppearance({
-  colorPrimary: '#000000' <Hex String>,
-  colorButtonPrimary: '#000000' <Hex String>,
-  colorButtonPrimaryText: '#FFFFFF' <Hex String>,
-  colorButtonPrimaryPressed: '#000000' <Hex String>
+    colorPrimary: '#000000' <Hex String>,
+    colorButtonPrimary: '#000000' <Hex String>,
+    colorButtonPrimaryText: '#FFFFFF' <Hex String>,
+    colorButtonPrimaryPressed: '#000000' <Hex String>
 })
 .build();
 
@@ -63,17 +63,17 @@ const init = await MetroIpo.init(config);
 
 ```js
 React.useEffect(() => {
-MetroIpo.onComplete((event: any) => {
-    setResult(event.message);
-});
+    MetroIpo.onComplete((event: any) => {
+        setResult(event.message);
+    });
 
-MetroIpo.onCancel((event: any) => {
-    setResult(event.message);
-});
+    MetroIpo.onCancel((event: any) => {
+        setResult(event.message);
+    });
 
-return () => {
-    MetroIpo.removeListeners();
-}
+    return () => {
+        MetroIpo.removeListeners();
+    }
 });
 ```
 
