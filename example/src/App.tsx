@@ -23,7 +23,7 @@ export default function App() {
 
   const startSdk = async (code: String) => {
     try {
-      const config = MetroIpoConfig.setDomain("https://admin.metroipo.com").setCode(code).build();
+      const config = MetroIpoConfig.setDomain("METRO_ADMIN_URL").setCode(code).build();
       const init = await MetroIpo.init(config);
       if (init.success) {
         setResult(init.message);
