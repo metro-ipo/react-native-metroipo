@@ -18,10 +18,6 @@ interface Theme {
    */
   colorPrimary?: string;
   /**
-   * Defines the color of the Back button and the text color of the Title in the Toolbar.
-  */
-  colorSecondary?: string;
-  /**
    * Defines the background color of Primary Buttons and the text color of Secondary Buttons.
    */
   colorButtonPrimary?: string;
