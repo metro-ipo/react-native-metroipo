@@ -18,7 +18,7 @@ import com.metroipo.sdk.MetroIpoSdk;
 
 @ReactModule(name = MetroIpoModule.NAME)
 public class MetroIpoModule extends ReactContextBaseJavaModule {
-  public static final String NAME = "MetroIpo";
+  public static final String NAME = "MetroIpoRN";
   private MetroIpoSdk metroSdk;
 
   public MetroIpoModule(ReactApplicationContext reactContext) {

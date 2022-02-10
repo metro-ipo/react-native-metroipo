@@ -14,6 +14,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/metro-ipo/react-native-metroipo.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
-
+  s.requires_arc = true
+  
   s.dependency "React-Core"
+  s.dependency "MetroIpoSdk", "0.0.4"
 end

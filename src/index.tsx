@@ -42,7 +42,7 @@ class MetroIpoModule {
   private onCancelListener: any;
 
   constructor() {
-    this.module = NativeModules.MetroIpo;
+    this.module = NativeModules.MetroIpoRN;
     this.emitter = new NativeEventEmitter(this.module);
   }
 
