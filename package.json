@@ -1,5 +1,5 @@
 {
-  "name": "react-native-metroipo",
+  "name": "@metroipo/react-native-metroipo",
   "version": "0.1.0",
   "description": "Official React-Native wrapper for the Metro Ipo SDK.",
   "main": "lib/commonjs/index",

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { MetroIpo, MetroIpoConfig } from 'react-native-metroipo';
+import { MetroIpo, MetroIpoConfig } from '@metroipo/react-native-metroipo';
 
 export default function App() {
   const [result, setResult] = React.useState("Awaiting Initialization");
