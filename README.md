@@ -57,7 +57,7 @@ const config = MetroIpoConfig.setDomain("METRO_URL").setCode("CODE")
 })
 .build();
 
-const init = await OrbaOne.init('publishable-api-key', 'applicant-id', verificationConfig);
+const init = await MetroIpo.init(config);
 ```
 ## Handling Capture Callbacks
 
