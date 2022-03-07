@@ -37,7 +37,7 @@
     "android"
   ],
   "repository": "https://github.com/metro-ipo/react-native-metroipo",
-  "author": "Luechen Christopher <luechenchris@gmail.com> (https://github.com/luechenchris)",
+  "author": "Luechen Christopher <luechen@orba.io> (https://app.metroipo.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/metro-ipo/react-native-metroipo/issues"
