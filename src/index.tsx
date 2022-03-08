@@ -69,10 +69,10 @@ class MetroIpoModule {
   */
   public removeListeners() {
     if (this.onCompleteListener != null) {
-      this.onCompleteListener.remove('onMetroIpoComplete', () => { });
+      this.onCompleteListener.remove();
     }
     if (this.onCancelListener != null) {
-      this.onCancelListener.remove('onMetroIpoCancel', () => { });
+      this.onCancelListener.remove();
     }
   }
 }
