@@ -40,12 +40,11 @@ public class MetroIpoModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void initialize(String domain, String code, ReadableMap theme, Promise promise ) {
+  public void initialize(String domain, ReadableMap theme, Promise promise ) {
     try {
       // Initialize MetroSDK
       metroSdk = new MetroIpoSdk.Builder()
         .setDomain(domain)
-        .setCode(code)
         .create();
 
       // Pass SDK response to JS bridge
@@ -62,16 +61,16 @@ public class MetroIpoModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void startCapture(Promise promise) {
+  public void startCapture(String code, Promise promise) {
     try {
-      metroSdk.start(getCurrentActivity());
+      metroSdk.start(code, getCurrentActivity());
 
       metroSdk.onStart(new MetroIpoSdk.Response() {
         @Override
         public void onSuccess() {
           WritableMap params = Arguments.createMap();
           params.putBoolean("success", true);
-          params.putString("message", "The Metro IPO Signature Capture has been started.");
+          params.putString("message", "Metro IPO Signature Capture has started.");
           promise.resolve(params);
         }
 

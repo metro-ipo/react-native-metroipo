@@ -6,13 +6,12 @@ class MetroIpoRN: RCTEventEmitter {
   
   @objc
   func initialize(_ domain: String,
-                  code: String,
                   appearance theme: [String: Any],
                   resolve: RCTPromiseResolveBlock,
                   reject: RCTPromiseRejectBlock) {
     var params: [String: Any] = [:]
     do {
-      var configBuilder = MetroIpoConfig().setDomain(url: domain).setCode(code:code)
+      var configBuilder = MetroIpoConfig().setDomain(url: domain)
       if let ui = getTheme(appearance: theme) {
         configBuilder = configBuilder.setAppearance(ui)
       }
@@ -27,7 +26,7 @@ class MetroIpoRN: RCTEventEmitter {
   }
   
   @objc
-  func startCapture(_ resolve: @escaping RCTPromiseResolveBlock,reject: @escaping RCTPromiseRejectBlock) {
+  func startCapture(_ code: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     var params: [String: Any] = [:]
     
     sdk.with(responseHandler: {response in
@@ -80,7 +79,7 @@ class MetroIpoRN: RCTEventEmitter {
         guard let presentedView = RCTPresentedViewController() else {
           return
         }
-        try self.sdk.start(origin: presentedView, style: presentationStyle)
+        try self.sdk.start(code: code, origin: presentedView, style: presentationStyle)
       } catch let error {
         reject("E_FLOW", "\(error)", error)
       }
