@@ -8,6 +8,10 @@ export default function App() {
   const [codeInput, setCodeInput] = React.useState("");
 
   React.useEffect(() => {
+    initializeSdk();
+  });
+
+  React.useEffect(() => {
     MetroIpo.onComplete((event: any) => {
       setResult(event.message);
     });
@@ -21,14 +25,18 @@ export default function App() {
     }
   });
 
+  const initializeSdk = async () => {
+    try {
+      const config = MetroIpoConfig.setDomain("admin.metroipo.com").build();
+      await MetroIpo.init(config);
+    } catch (error) {
+      setResult(String(error));
+    }
+  }
+
   const startSdk = async (code: String) => {
     try {
-      const config = MetroIpoConfig.setDomain("METRO_ADMIN_URL").setCode(code).build();
-      const init = await MetroIpo.init(config);
-      if (init.success) {
-        setResult(init.message);
-      }
-      const res = await MetroIpo.startCapture();
+      const res = await MetroIpo.startCapture(code);
       if (res.success) {
         setResult(res.message);
       }

@@ -8,7 +8,6 @@ interface Result {
 
 interface MetroIpoConfig {
   domain?: String;
-  code?: String;
   theme?: Theme;
 }
 
@@ -48,12 +47,12 @@ class MetroIpoModule {
   * 
   * Returns a Promise
   */
-  public init(config: MetroIpoConfig = { domain: '', code: '', theme: {} }): Promise<Result> {
-    return this.module.initialize(config.domain, config.code, config.theme);
+  public init(config: MetroIpoConfig = { domain: '', theme: {} }): Promise<Result> {
+    return this.module.initialize(config.domain, config.theme);
   }
 
-  public startCapture(): Promise<Result> {
-    return this.module.startCapture();
+  public startCapture(code: String): Promise<Result> {
+    return this.module.startCapture(code);
   }
 
   public onComplete(callback: (...args: any[]) => any) {
@@ -79,7 +78,6 @@ class MetroIpoModule {
 
 class ConfigBuilder {
   private domain: String = '';
-  private code: String = '';
   private appearance: Theme = {};
 
   /**
@@ -96,19 +94,6 @@ class ConfigBuilder {
   }
 
   /**
-  * Function 'setCode' takes the following parameter:
-  * String: Metro Ipo Application Verification Code.
-  */
-  public setCode(code: String) {
-    let val = code.trim();
-    if (val == '') {
-      throw new Error("Verification code is missing.");
-    }
-    this.code = val;
-    return this;
-  }
-
-  /**
   * iOS only - for android, set appearance in colors.xml file
   */
   public setAppearance(theme: Theme): ConfigBuilder {
@@ -117,7 +102,7 @@ class ConfigBuilder {
   }
 
   public build(): MetroIpoConfig {
-    return { domain: this.domain, code: this.code, theme: this.appearance }
+    return { domain: this.domain, theme: this.appearance }
   }
 }
 

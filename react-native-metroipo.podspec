@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   
   s.dependency "React-Core"
-  s.dependency "MetroIpoSdk", "0.0.4"
+  s.dependency "MetroIpoSdk", "0.0.5"
 end

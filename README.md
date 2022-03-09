@@ -29,14 +29,14 @@ import { MetroIpo, MetroIpoConfig } from 'react-native-metroipo';
 ## Starting the Signature Capture Flow 
 ```js
 try {
-    const config = MetroIpoConfig.setDomain("METRO_URL").setCode("CODE").build();
+    const config = MetroIpoConfig.setDomain("METRO_URL").build();
     const init = await MetroIpo.init(config);
     if (init.success) {
         // Successfully initialized the SDK.
     }
 
     // Starting the Signature Capture
-    const res = await MetroIpo.startCapture();
+    const res = await MetroIpo.startCapture("CODE");
     if (res.success) {
         // Successfully started the SDK.
     }
@@ -48,7 +48,7 @@ try {
 ## Adding Customizations
 ```js
 // Customizing the Theme - iOS only. The Android theme can be updated in your app's colors.xml file. See here for further details: https://github.com/metro-ipo/metroipo-android-sdk#6-customizing-the-theme
-const config = MetroIpoConfig.setDomain("METRO_URL").setCode("CODE")
+const config = MetroIpoConfig.setDomain("METRO_URL")
 .setAppearance({
     colorPrimary: '#000000' <Hex String>,
     colorButtonPrimary: '#000000' <Hex String>,
