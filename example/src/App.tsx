@@ -9,7 +9,7 @@ export default function App() {
 
   React.useEffect(() => {
     initializeSdk();
-  });
+  }, []);
 
   React.useEffect(() => {
     MetroIpo.onComplete((event: any) => {
@@ -23,7 +23,7 @@ export default function App() {
     return () => {
       MetroIpo.removeListeners();
     }
-  });
+  }, []);
 
   const initializeSdk = async () => {
     try {

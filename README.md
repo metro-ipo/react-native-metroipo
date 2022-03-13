@@ -74,7 +74,7 @@ React.useEffect(() => {
     return () => {
         MetroIpo.removeListeners();
     }
-});
+}, []);
 ```
 
 ## Troubleshooting
