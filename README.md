@@ -55,9 +55,9 @@ const config = MetroIpoConfig.setDomain("METRO_URL")
     colorButtonPrimary: '#000000' <Hex String>,
     colorButtonPrimaryText: '#FFFFFF' <Hex String>,
     colorButtonPrimaryPressed: '#000000' <Hex String>,
-    imageNavCenterLogo: '' <Path to File String>,
-    imageNavBackground: '' <Path to File String>,
-    imageBottomLogo: '' <Path to File String>,
+    imageNavCenterLogo: '' <String>, // Name of Asset in Xcode 
+    imageNavBackground: '' <String>, //  Name of Asset in Xcode 
+    imageBottomLogo: '' <String>, // Name of Asset in Xcode
     buttonBorderRadius: 18 <Number>,
 })
 .build();
