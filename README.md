@@ -51,9 +51,14 @@ try {
 const config = MetroIpoConfig.setDomain("METRO_URL")
 .setAppearance({
     colorPrimary: '#000000' <Hex String>,
+    colorTextPrimary: '#000000' <Hex String>,
     colorButtonPrimary: '#000000' <Hex String>,
     colorButtonPrimaryText: '#FFFFFF' <Hex String>,
-    colorButtonPrimaryPressed: '#000000' <Hex String>
+    colorButtonPrimaryPressed: '#000000' <Hex String>,
+    imageNavCenterLogo: '' <Path to File String>,
+    imageNavBackground: '' <Path to File String>,
+    imageBottomLogo: '' <Path to File String>,
+    buttonBorderRadius: 18 <Number>,
 })
 .build();
 
