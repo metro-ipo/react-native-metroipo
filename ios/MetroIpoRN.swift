@@ -91,14 +91,25 @@ class MetroIpoRN: RCTEventEmitter {
     if !theme.isEmpty {
       let darkMode = theme["enableDarkMode"] ?? false
       let primary = theme["colorPrimary"] ?? "#3D71E3"
-      let buttonPrimary = theme["colorButtonPrimary"] ?? "#3D71E3"
-      let buttonTextPrimary = theme["colorButtonPrimaryText"] ?? "#FFFFFF"
-      let buttonPrimaryPressed = theme["colorButtonPrimaryPressed"] ?? "#5E6671"
+      let textPrimary = theme["colorTextPrimary"] ?? "#3D71E3"
+      let btnPrimary = theme["colorButtonPrimary"] ?? "#3D71E3"
+      let btnTextPrimary = theme["colorButtonPrimaryText"] ?? "#FFFFFF"
+      let btnPrimaryPressed = theme["colorButtonPrimaryPressed"] ?? "#5E6671"
+      let btnBorderRadius = theme["buttonBorderRadius"] ?? 18
+      let imgNavCenterLogo = theme["imageNavCenterLogo"] ?? ""
+      let imgNavBackground = theme["imageNavBackground"] ?? ""
+      let imgBottomLogo = theme["imageBottomLogo"] ?? ""
+      
       return Theme(
         colorPrimary: hexStringToUIColor(hex: primary as! String),
-        colorButtonPrimary: hexStringToUIColor(hex: buttonPrimary as! String),
-        colorButtonPrimaryText: hexStringToUIColor(hex: buttonTextPrimary as! String),
-        colorButtonPrimaryPressed: hexStringToUIColor(hex: buttonPrimaryPressed as! String),
+        colorTextPrimary: hexStringToUIColor(hex: textPrimary as! String),
+        colorButtonPrimary: hexStringToUIColor(hex: btnPrimary as! String),
+        colorButtonPrimaryText: hexStringToUIColor(hex: btnTextPrimary as! String),
+        colorButtonPrimaryPressed: hexStringToUIColor(hex: btnPrimaryPressed as! String),
+        imageNavCenterLogo: getImage(assetName: imgNavCenterLogo as! String),
+        imageNavBackground: getImage(assetName: imgNavBackground as! String),
+        imageBottomLogo: getImage(assetName: imgBottomLogo as! String),
+        buttonBorderRadius: CGFloat(btnBorderRadius as! Int),
         enableDarkMode: darkMode as! Bool
       )
     }
@@ -135,5 +146,12 @@ class MetroIpoRN: RCTEventEmitter {
       blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
       alpha: CGFloat(1.0)
     )
+  }
+  
+  func getImage (assetName: String) -> UIImage? {
+    guard let image = UIImage(named: assetName) else {
+      return nil
+    }
+    return image
   }
 }

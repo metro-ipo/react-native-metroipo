@@ -119,5 +119,5 @@ dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
-  implementation 'com.metroipo:metro-ipo-sdk:0.0.4'
+  implementation 'com.metroipo:metro-ipo-sdk:0.0.5'
 }

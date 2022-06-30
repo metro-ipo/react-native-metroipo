@@ -11,23 +11,50 @@ interface MetroIpoConfig {
   theme?: Theme;
 }
 
+/**
+ * iOS only - for android, set appearance in resource files
+ */
 interface Theme {
   /**
-   * Defines the background color of the Toolbar.
+   * Defines the primary accent color for bullet points and highlights.
    */
   colorPrimary?: string;
+  /**
+   * Defines the color of the nav title text and back button.
+   */
+  colorTextPrimary?: string;
   /**
    * Defines the background color of Primary Buttons and the text color of Secondary Buttons.
    */
   colorButtonPrimary?: string;
   /**
-   * Defines the text color of primary buttons
+   * Defines the text color of primary buttons.
    */
   colorButtonPrimaryText?: string;
   /**
-   * Defines the background color of primary buttons when pressed
+   * Defines the background color of primary buttons when pressed.
    */
   colorButtonPrimaryPressed?: string;
+  /**
+   * Defines the border radius of buttons.
+   */
+  buttonBorderRadius?: number;
+  /**
+   * Defines a center image of the signature page navigation bar.
+   */
+  imageNavCenterLogo?: string;
+  /**
+   * Defines the background image of the signature page navigation bar.
+   */
+  imageNavBackground?: string;
+  /**
+   * Defines the bottom logo image of the signature page.
+   */
+  imageBottomLogo?: string;
+  /**
+   * Defines the dark mode allowed setting for the SDK.
+   */
+  enableDarkMode?: boolean
 }
 
 class MetroIpoModule {
