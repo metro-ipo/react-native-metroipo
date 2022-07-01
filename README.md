@@ -23,7 +23,7 @@ No additional setup is necessary.
 ## Usage
 
 ```js
-import { MetroIpo, MetroIpoConfig } from 'react-native-metroipo';
+import { MetroIpo, MetroIpoConfig } from '@metroipo/react-native-metroipo';
 ```
 
 ## Starting the Signature Capture Flow 
@@ -86,6 +86,27 @@ React.useEffect(() => {
 When installing or using `@metroipo/react-native-metroipo` you may encounter the following problems:
 
 [iOS] - If you are using `@react-native-firebase` in your project, along with `use_frameworks!`, you may encounter an error with `RNFirebase`. To avoid this, add `$RNFirebaseAsStaticFramework = true` at the top of your `Podfile`. 
+
+[iOS] - For `Cycle inside FBReactNativeSpec` errors add the following to your podfile (https://github.com/facebook/react-native/issues/31034#issuecomment-812564390).
+```
+  post_install do |installer|
+    react_native_post_install(installer)
+    
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      end
+      
+      if (target.name&.eql?('FBReactNativeSpec'))
+        target.build_phases.each do |build_phase|
+          if (build_phase.respond_to?(:name) && build_phase.name.eql?('[CP-User] Generate Specs'))
+            target.build_phases.move(build_phase, 0)
+          end
+        end
+      end
+    end
+  end
+```
 
 ## Contributing
 
