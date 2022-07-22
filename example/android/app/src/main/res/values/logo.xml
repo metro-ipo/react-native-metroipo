@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Override Metro Image Assets - unset each drawable to remove default images -->
+    <drawable name="metro_sdk_logo_center" />
+    <drawable name="metro_sdk_logo_right" />
+    <drawable name="metro_sdk_logo_bottom" />
+    <drawable name="metro_sdk_nav_background" />
+</resources>

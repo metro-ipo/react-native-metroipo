@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Override Metro Button Corner Radius -->
+    <dimen name="metro_sdk_button_corner_radius">5dp</dimen>
+</resources>

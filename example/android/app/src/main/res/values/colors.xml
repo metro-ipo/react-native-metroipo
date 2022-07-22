@@ -1,0 +1,9 @@
+<resources>
+    <color name="white">#FFFFFF</color>
+    <!-- Override Metro Colors -->
+    <color name="metroColorPrimary">#ED1B24</color>
+    <color name="metroColorSecondary">@color/metroColorPrimary</color>
+    <color name="metroColorButtonPrimary">@color/metroColorPrimary</color>
+    <color name="metroColorButtonPrimaryText">@color/white</color>
+    <color name="metroColorButtonPrimaryPressed">#E4E4E4</color>
+</resources>
