@@ -27,7 +27,17 @@ export default function App() {
 
   const initializeSdk = async () => {
     try {
-      const config = MetroIpoConfig.setDomain("admin.metroipo.com").build();
+      const config = MetroIpoConfig.setDomain("admin.metroipo.com").setAppearance({
+        colorPrimary: '#ED1B24',
+        colorTextPrimary: '#000000',
+        colorButtonPrimary: '#ED1B24',
+        colorButtonPrimaryText: '#FFFFFF',
+        colorButtonPrimaryPressed: '#E4E4E4',
+        imageNavCenterLogo: '',
+        imageNavBackground: '',
+        imageBottomLogo: '',
+        buttonBorderRadius: 0,
+      }).build();
       await MetroIpo.init(config);
     } catch (error) {
       setResult(String(error));

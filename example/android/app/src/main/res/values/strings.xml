@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Metroipo Example</string>
+    <!-- Override Metro Signature Pad Title -->
+    <string name="metro_signature_toolbar_title">GK Capital Signature Capture</string>
 </resources>
