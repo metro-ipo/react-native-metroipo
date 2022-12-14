@@ -27,7 +27,7 @@ export default function App() {
 
   const initializeSdk = async () => {
     try {
-      const config = MetroIpoConfig.setDomain("admin.metroipo.com").setAppearance({
+      const config = MetroIpoConfig.setDomain("staging-admin.metroipo.com").setAppearance({
         colorPrimary: '#ED1B24',
         colorTextPrimary: '#000000',
         colorButtonPrimary: '#ED1B24',
